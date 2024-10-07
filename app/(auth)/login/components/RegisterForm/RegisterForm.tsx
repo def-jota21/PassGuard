@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 import { toast } from "@/hooks/use-toast"
 import { LogInIcon } from "lucide-react"
+import { signIn } from "next-auth/react"
 const formSchema = z.object({
     email: z.string().min(2).max(50),
     password: z.string().min(2).max(50),
@@ -33,7 +34,7 @@ export default function RegisterForm() {
     })
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        
+
         const response = await fetch("/api/auth/register", {
             method: "POST",
             body: JSON.stringify({
@@ -44,65 +45,83 @@ export default function RegisterForm() {
         });
 
         if (response.status === 200) {
-            router.push("/");
+
             toast({
-                title: "Registered successfully",
+                title: "Registered successfully ✔",
             });
-        }else{
+
+            const response = await signIn("credentials", {
+                email: values.email,
+                password: values.password,
+                redirect: false,
+            });
+
+            if (response?.status === 200) {
+                toast({
+                    title: "Logged in successfully ✔",
+                });
+                router.push("/");
+            } else {
+                toast({
+                    title: "Something went wrong",
+                    variant: "destructive",
+                });
+            }
+        } else {
             toast({
                 title: "Something went wrong",
                 variant: "destructive",
             });
         }
     }
-        return (
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="w-full mt-5 space-y-3 text-black">
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="email@example.com" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="username"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Username</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Username" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Password</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Shhh..." type="password" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+    return (
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full mt-5 space-y-3 text-black">
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                                <Input placeholder="email@example.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Username</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Username" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Password</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Shhh..." type="password" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
-                    <Button type="submit"  className="w-full bg-green-800 hover:bg-green-700 focus:ring-green-600">
-                       <LogInIcon className="w-4 h-4 mr-2" />
-                        Register
-                    </Button>
-                </form>
-            </Form>
-        )
-    }
+                <Button type="submit" className="w-full bg-green-800 hover:bg-green-700 focus:ring-green-600">
+                    <LogInIcon className="w-4 h-4 mr-2" />
+                    Register
+                </Button>
+            </form>
+        </Form>
+    )
+}

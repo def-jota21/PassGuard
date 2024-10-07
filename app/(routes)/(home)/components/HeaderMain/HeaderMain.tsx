@@ -58,7 +58,7 @@ export default function HeaderMain(props: DataHeaderMainProps) {
                         </DropdownMenuLabel>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <DialogContent className="w-full sm:max-w-[825px] sm:min-w-[700px] max-w-[90%]">
+                <DialogContent className="w-full sm:max-w-[825px] sm:min-w-[700px] max-w-[90%] overflow-auto max-h-[90vh]">
                     <DialogHeader>
                         <DialogTitle>New element</DialogTitle>
                     </DialogHeader>

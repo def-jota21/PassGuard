@@ -4,13 +4,15 @@ import {hash} from "bcrypt";
 
 export async function POST(request: Request) {
   try {
-    console.log(request.body);
+    
     const { 
         email, 
         password, 
         username,
     } = await request.json();
-    const hashedPassword = await hash(password, 10);   
+
+    const hashedPassword = await hash(password, 10); 
+
     if(!email || !password || !username) {
         return NextResponse.json("Missing fields", { status: 400 });
     }
