@@ -1,5 +1,5 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { UserGeneratorProps } from "./userGenerator.types";
+import { UserGeneratorProps } from "./UserGenerator.types";
 import { Label } from "@/components/ui/label";
 
 export default function UserGenerator(props: UserGeneratorProps) {
