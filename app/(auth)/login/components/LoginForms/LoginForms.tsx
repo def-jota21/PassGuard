@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/hooks/use-toast"
+import { KeyRound } from "lucide-react"
 const formSchema = z.object({
     email: z.string().min(2).max(50),
     password: z.string().min(2).max(50),
@@ -30,7 +31,7 @@ export default function LoginForms() {
         },
     })
 
-    
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         const response = await signIn("credentials", {
             email: values.email,
@@ -49,7 +50,7 @@ export default function LoginForms() {
                 variant: "destructive",
             });
         }
-        
+
     }
     return (
         <Form {...form}>
@@ -80,7 +81,10 @@ export default function LoginForms() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="w-full bg-green-800">Submit</Button>
+                <Button type="submit" className="w-full bg-green-800 hover:bg-green-700 focus:ring-green-600">
+                    <KeyRound className="w-4 h-4 mr-2" />
+                    Login
+                </Button>
             </form>
         </Form>
     )
