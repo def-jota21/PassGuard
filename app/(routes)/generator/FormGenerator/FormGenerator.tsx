@@ -55,6 +55,7 @@ export default function FormGenerator() {
         [
             selected,
             userType,
+            lengthPassword,
         ])
     const handleShufflePassword = () => {
         if (selected === "password") {

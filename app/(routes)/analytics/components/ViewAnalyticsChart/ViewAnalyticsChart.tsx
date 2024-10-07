@@ -60,7 +60,7 @@ export default function ViewAnalyticsChart(props: ViewAnalyticsChartProps) {
     } satisfies ChartConfig
     const total = React.useMemo(() => {
         return chartData.reduce((acc, curr) => acc + curr.directories, 0)
-    }, [])
+    }, [chartData])
 
     return (
         <Card className="flex flex-col">
