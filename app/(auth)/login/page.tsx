@@ -1,6 +1,5 @@
 import React from 'react'
 import ImageAuth from './components/Image/ImageAuth'
-import { Table } from 'lucide-react'
 import TabsForms from './components/TabForms/TabsForms'
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';

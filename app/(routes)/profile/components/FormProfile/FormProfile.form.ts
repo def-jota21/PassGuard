@@ -1,5 +1,3 @@
-import { profile } from "console";
-import { use } from "react";
 import { z } from "zod";
 
 export const formSchema = z.object({

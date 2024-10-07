@@ -32,6 +32,7 @@ export async function PATCH(request: Request) {
     
     return NextResponse.json(profile);
   } catch (error) {
+    console.log(error);
     return NextResponse.json("Internal Error", { status: 500 });
   }
 }

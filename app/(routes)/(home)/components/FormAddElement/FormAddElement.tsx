@@ -1,13 +1,13 @@
 "use client"
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "./FormAddElement.form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Check, Copy, Earth, Eye, Shuffle } from "lucide-react";
+import { Copy, Earth, Eye, Shuffle } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { copyClipboard } from "@/lib/copyClipboard";
 import { useState } from "react";
@@ -57,6 +57,7 @@ export default function FormAddElement(props: FormAddElementProps) {
       closeDialog();
       router.refresh();
     } catch (error) {
+      console.log(error)
       toast({
         title: "Something went wrong",
         variant: "destructive",

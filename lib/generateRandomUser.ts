@@ -55,7 +55,7 @@ export const generateRandomUser = (length = 10) => {
         "window",
     ];
     
-    const randomItem = (array: any[]) => 
+    const randomItem = (array: string[]) => 
         array[Math.floor(Math.random() * array.length)];
 
     let user = "";

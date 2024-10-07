@@ -1,7 +1,7 @@
 
 "use client"
 import { FormProfileProps } from "./FormProfile.types";
-import { set, z } from "zod"
+import {  z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
@@ -57,6 +57,7 @@ export default function FormProfile(props: FormProfileProps) {
             setPhotoUpload(false);
             router.push("/");
         } catch (error) {
+            console.log(error);
             toast({
                 title: "Something went wrong",
                 variant: "destructive",

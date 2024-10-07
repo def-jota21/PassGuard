@@ -16,7 +16,6 @@ import {
     ChartTooltipContent,
 } from "@/components/ui/chart"
 import { ElementsChartProps } from "./ElementsChart.type"
-import { log } from "console"
 
 
 export default function ElementsChart(props: ElementsChartProps) {

@@ -1,6 +1,5 @@
 import React from "react";
 import { PasswordGeneratorProps } from "./PasswordGenerator.type";
-import { Check } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export default function PasswordGenerator(props: PasswordGeneratorProps) {

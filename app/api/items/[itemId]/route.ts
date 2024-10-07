@@ -18,6 +18,7 @@ export async function PATCH(request: Request, {params} : { params: { itemId: str
     });
     return NextResponse.json(element);
   } catch (error) {
+    console.log(error);
     return NextResponse.json("Internal Error", { status: 500 });
   }
 }

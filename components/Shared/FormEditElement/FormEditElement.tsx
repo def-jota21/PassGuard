@@ -3,12 +3,12 @@ import React from 'react'
 import { FormEditElementProps } from './FormEditElement.type'
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Check, Copy, Earth, Eye, Save, Shuffle } from "lucide-react";
+import {  Copy, Earth, Eye, Save, Shuffle } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { copyClipboard } from "@/lib/copyClipboard";
 import { useState } from "react";
@@ -64,6 +64,7 @@ export default function FormEditElement(props: FormEditElementProps) {
 
             router.push("/");
         } catch (error) {
+            console.log(error);
             toast({
                 title: "Something went wrong",
                 variant: "destructive",
